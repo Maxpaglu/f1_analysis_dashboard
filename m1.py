@@ -27,9 +27,9 @@ def load_qualifying_data(year):
 
 def load_race_data(year):
     file_paths = {
-        "2022": r'data/Formula1_2022Season_RaceResults.csv',
-        "2023": r'data/Formula1_2023Season_RaceResults.csv',
-        "2024": r'data/Formula1_2024Season_RaceResults.csv',
+        "2022": r'data/Formula1_2022Season_raceResults.csv',
+        "2023": r'data/Formula1_2023Season_raceResults.csv',
+        "2024": r'data/Formula1_2024Season_raceResults.csv',
         "2025": r'data/Formula1_2025Season_RaceResults.csv'
     }
     try:
