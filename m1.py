@@ -12,7 +12,7 @@ def load_qualifying_data(year):
         "2022": 'data/Formula1_2022season_qualifyingResults.csv',
         "2023": 'data/Formula1_2023season_qualifyingResults.csv',
         "2024": 'data/Formula1_2024season_qualifyingResults.csv',
-        "2025": 'data/Formula1_2025season_qualifyingResults.csv'
+        "2025": 'data/Formula1_2025Season_QualifyingResults.csv'
     }
     try:
         if year in file_paths and os.path.exists(file_paths[year]):
