@@ -10,10 +10,10 @@ import base64
 
 def load_qualifying_data(year):
     file_paths = {
-        "2022": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2022season_qualifyingResults.csv',
-        "2023": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2023season_qualifyingResults.csv',
-        "2024": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2024season_qualifyingResults.csv',
-        "2025": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2025season_qualifyingResults.csv'
+        "2022": r'data/Formula1_2022season_qualifyingResults.csv',
+        "2023": r'data/Formula1_2023season_qualifyingResults.csv',
+        "2024": r'data/Formula1_2024season_qualifyingResults.csv',
+        "2025": r'data/Formula1_2025season_qualifyingResults.csv'
     }
     try:
         if year in file_paths:
@@ -27,10 +27,10 @@ def load_qualifying_data(year):
 
 def load_race_data(year):
     file_paths = {
-        "2022": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2025Season_RaceResults.csv',
-        "2023": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2025Season_RaceResults.csv',
-        "2024": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2025Season_RaceResults.csv',
-        "2025": r'C:\Users\DELL\Desktop\dsbda\data\Formula1_2025Season_RaceResults.csv'
+        "2022": r'data/Formula1_2022Season_RaceResults.csv',
+        "2023": r'data/Formula1_2023Season_RaceResults.csv',
+        "2024": r'data/Formula1_2024Season_RaceResults.csv',
+        "2025": r'data/Formula1_2025Season_RaceResults.csv'
     }
     try:
         if year in file_paths:
