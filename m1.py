@@ -3,43 +3,43 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-import base64
+import os
 
 # Function to load qualifying dataset based on selected year
 @st.cache_data
-
 def load_qualifying_data(year):
     file_paths = {
-        "2022": r'data/Formula1_2022season_qualifyingResults.csv',
-        "2023": r'data/Formula1_2023season_qualifyingResults.csv',
-        "2024": r'data/Formula1_2024season_qualifyingResults.csv',
-        "2025": r'data/Formula1_2025season_qualifyingResults.csv'
+        "2022": 'data/Formula1_2022season_qualifyingResults.csv',
+        "2023": 'data/Formula1_2023season_qualifyingResults.csv',
+        "2024": 'data/Formula1_2024season_qualifyingResults.csv',
+        "2025": 'data/Formula1_2025season_qualifyingResults.csv'
     }
     try:
-        if year in file_paths:
+        if year in file_paths and os.path.exists(file_paths[year]):
             return pd.read_csv(file_paths[year])
+        else:
+            st.warning(f"File not found for {year} season.")
     except Exception as e:
         st.error(f"Error loading qualifying data for {year}: {e}")
     return None
 
-# Function to load race dataset based on selected year
 @st.cache_data
-
 def load_race_data(year):
     file_paths = {
-        "2022": r'data/Formula1_2022season_raceResults.csv',
-        "2023": r'data/Formula1_2023season_raceResults.csv',
-        "2024": r'data/Formula1_2024season_raceResults.csv',
-        "2025": r'data/Formula1_2025Season_RaceResults.csv'
+        "2022": 'data/Formula1_2022season_raceResults.csv',
+        "2023": 'data/Formula1_2023season_raceResults.csv',
+        "2024": 'data/Formula1_2024season_raceResults.csv',
+        "2025": 'data/Formula1_2025Season_RaceResults.csv'
     }
     try:
-        if year in file_paths:
+        if year in file_paths and os.path.exists(file_paths[year]):
             return pd.read_csv(file_paths[year])
+        else:
+            st.warning(f"Race data file not found for {year}.")
     except Exception as e:
         st.error(f"Error loading race data for {year}: {e}")
     return None
 
-# Convert qualifying times (Q1, Q2, Q3) into seconds for easier comparison
 def convert_to_seconds(time_str):
     if pd.isna(time_str) or not isinstance(time_str, str):
         return None
@@ -51,27 +51,19 @@ def convert_to_seconds(time_str):
         except ValueError:
             return None
     try:
-        return float(time_str)  
+        return float(time_str)
     except ValueError:
         return None
 
-
 def main():
-    # Tabs
     tab1, tab2, tab3 = st.tabs(["Home", "Drivers Quali Comparisons", "Race Performance of Drivers"])
 
     with tab1:
-        # logo_path = r"C:\Users\DELL\Desktop\dsbda\images\download.png"
-        # st.image(logo_path, width=150)
-
         st.markdown("""
         <h1 style='text-align: center;'>An Maximus Analysis</h1>
         <h2 style='text-align: center;'>Formula 1 Qualifying Dashboard</h2>
         <h2 style='text-align: left;'>"Welcome to the Ultimate F1 Analysis Dashboard – Dive into real-time race insights, driver performance metrics, and historical trends that define the pinnacle of motorsport!"</h2>
         """, unsafe_allow_html=True)
-
-        # home_image_path = r'images/download.png'
-        # st.image(home_image_path, use_container_width=True)
 
     with tab2:
         st.subheader("Drivers Quali Comparisons")
@@ -80,7 +72,6 @@ def main():
         year = st.selectbox("Select Season", ["2022", "2023", "2024", "2025"])
         df = load_qualifying_data(year)
         if df is None:
-            st.warning("No data found for the selected season.")
             return
 
         if sub_tab == "Track Comparisons":
@@ -139,7 +130,6 @@ def main():
         race_df = load_race_data(year)
 
         if race_df is None or 'Position' not in race_df.columns:
-            st.warning("No race data available for this season.")
             return
 
         race_sub_tab = st.radio("Select Race Performance View", ["Individual Driver Stats", "Grid vs Final Position Comparison"])
@@ -160,7 +150,6 @@ def main():
             st.plotly_chart(fig)
 
         elif race_sub_tab == "Grid vs Final Position Comparison":
-            st.subheader("Grid vs Final Position (Track-wise)")
             selected_track = st.selectbox("Select Track for Comparison", race_df['Track'].unique(), key="track_grid_vs_position")
             track_data = race_df[race_df['Track'] == selected_track].copy()
 
@@ -174,8 +163,6 @@ def main():
                               title=f"Starting Grid vs Finishing Position - {selected_track}")
                 fig.update_layout(yaxis=dict(autorange='reversed', title='Position'), xaxis_title='Driver')
                 st.plotly_chart(fig)
-            else:
-                st.write("Required columns not found in dataset.")
 
 if __name__ == '__main__':
     main()
