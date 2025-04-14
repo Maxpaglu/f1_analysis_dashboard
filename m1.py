@@ -70,8 +70,8 @@ def main():
         <h2 style='text-align: left;'>"Welcome to the Ultimate F1 Analysis Dashboard – Dive into real-time race insights, driver performance metrics, and historical trends that define the pinnacle of motorsport!"</h2>
         """, unsafe_allow_html=True)
 
-        home_image_path = r"C:\Users\DELL\Desktop\dsbda\images\FuJfLy2X0AEmetQ.jpg"
-        st.image(home_image_path, use_container_width=True)
+        # home_image_path = r"C:\Users\DELL\Desktop\dsbda\images\FuJfLy2X0AEmetQ.jpg"
+        # st.image(home_image_path, use_container_width=True)
 
     with tab2:
         st.subheader("Drivers Quali Comparisons")
