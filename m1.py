@@ -61,8 +61,8 @@ def main():
     tab1, tab2, tab3 = st.tabs(["Home", "Drivers Quali Comparisons", "Race Performance of Drivers"])
 
     with tab1:
-        logo_path = r"C:\Users\DELL\Desktop\dsbda\images\download.png"
-        st.image(logo_path, width=150)
+        # logo_path = r"C:\Users\DELL\Desktop\dsbda\images\download.png"
+        # st.image(logo_path, width=150)
 
         st.markdown("""
         <h1 style='text-align: center;'>An Maximus Analysis</h1>
