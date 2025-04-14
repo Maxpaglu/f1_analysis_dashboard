@@ -118,29 +118,29 @@ def main():
             st.plotly_chart(fig)
 
         elif sub_tab == "Team Pole Position Comparison":
-    st.subheader("Compare Team Pole Positions")
+            st.subheader("Compare Team Pole Positions")
     
-    if 'Position' not in df.columns or 'Team' not in df.columns:
-        st.error("The necessary columns ('Position' or 'Team') are missing from the dataset.")
-    else:
-        df['Position'] = pd.to_numeric(df['Position'], errors='coerce')
-        pole_data = df[df['Position'] == 1]
-
-        if pole_data.empty:
-            st.warning("No pole position data available for this season.")
-        else:
-            team_pole_counts = pole_data['Team'].value_counts()
-
-            if not team_pole_counts.empty:
-                fig = px.pie(
-                    values=team_pole_counts.values,
-                    names=team_pole_counts.index,
-                    title="Pole Position Distribution Among Teams",
-                    hole=0.4
-                )
-                st.plotly_chart(fig)
+            if 'Position' not in df.columns or 'Team' not in df.columns:
+                st.error("The necessary columns ('Position' or 'Team') are missing from the dataset.")
             else:
-                st.warning("No team pole position data found.")
+                df['Position'] = pd.to_numeric(df['Position'], errors='coerce')
+                pole_data = df[df['Position'] == 1]
+
+                if pole_data.empty:
+                    st.warning("No pole position data available for this season.")
+                else:
+                    team_pole_counts = pole_data['Team'].value_counts()
+
+                    if not team_pole_counts.empty:
+                        fig = px.pie(
+                            values=team_pole_counts.values,
+                            names=team_pole_counts.index,
+                            title="Pole Position Distribution Among Teams",
+                            hole=0.4
+                        )
+                        st.plotly_chart(fig)
+                    else:
+                         st.warning("No team pole position data found.")
 
 
     with tab3:
